@@ -103,7 +103,7 @@ class MovieComponent extends Component {
                                     </fieldset>
                                     <fieldset className="form-group">
                                         <label>Year</label>
-                                        <Field className="form-control" type="text" name="year" />
+                                        <Field className="form-control" type="date" name="year" />
                                     </fieldset>
                                     <fieldset className="form-group">
                                         <label>Description</label>

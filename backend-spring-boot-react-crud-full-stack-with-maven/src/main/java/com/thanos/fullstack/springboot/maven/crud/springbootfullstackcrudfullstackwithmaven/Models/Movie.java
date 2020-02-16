@@ -1,5 +1,7 @@
 package com.thanos.fullstack.springboot.maven.crud.springbootfullstackcrudfullstackwithmaven.Models;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import java.time.Year;
 import java.util.Date;
 
@@ -7,7 +9,7 @@ public class Movie {
     private Long MovieId;
     private String MovieTitle;
     private String Director;
-    private int Year;
+    private Date Year;
     private String Description;
 
     public Movie() {
@@ -17,7 +19,7 @@ public class Movie {
         return MovieId;
     }
 
-    public Movie(Long movieId, String movieTitle, String director, int year, String description) {
+    public Movie(Long movieId, String movieTitle, String director, Date year, String description) {
         MovieId = movieId;
         MovieTitle = movieTitle;
         Director = director;
@@ -45,11 +47,12 @@ public class Movie {
         Director = director;
     }
 
-    public int getYear() {
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy")
+    public Date getYear() {
         return Year;
     }
-
-    public void setYear(int year) {
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
+    public void setYear(Date year) {
         Year = year;
     }
 

@@ -3,6 +3,8 @@ package com.thanos.fullstack.springboot.maven.crud.springbootfullstackcrudfullst
 import com.thanos.fullstack.springboot.maven.crud.springbootfullstackcrudfullstackwithmaven.Models.Movie;
 import org.springframework.stereotype.Service;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.time.Year;
 import java.util.ArrayList;
 import java.util.Date;
@@ -14,10 +16,13 @@ public class MoviesService {
     private static long idCounter = 0;
 
     static {
-        movies.add(new Movie(++idCounter, "Lord of The ring", "Peter Jackson", 2001, "Great Movie"));
-        movies.add(new Movie(++idCounter, "Lord of The ring", "Peter Jackson", 2001, "Great Movie"));
-        movies.add(new Movie(++idCounter, "Lord of The ring", "Peter Jackson", 2001, "Great Movie"));
-        movies.add(new Movie(++idCounter, "Lord of The ring", "Peter Jackson", 2001, "Great Movie"));
+        try {
+            movies.add(new Movie(++idCounter, "The Lord of the Rings: The Fellowship of the Ring", "Peter Jackson", new SimpleDateFormat("dd/MM/yyyy").parse("10/12/2001"), "Great Movie"));
+            movies.add(new Movie(++idCounter, "The Lord of the Rings: The Two Towers", "Peter Jackson", new SimpleDateFormat("dd/MM/yyyy").parse("05/12/2002"), "Great Movie"));
+            movies.add(new Movie(++idCounter, "The Lord of the Rings: The Return of the King", "Peter Jackson", new SimpleDateFormat("dd/MM/yyyy").parse("01/12/2003"), "Great Movie"));
+        } catch (Exception ex){
+            ex.printStackTrace();
+        }
     }
 
     public List<Movie> findAll() {

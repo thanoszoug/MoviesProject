@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import MoviesDataService from '../Services/MoviesDataService';
-import { Formik, Form, Field, ErrorMessage } from 'formik';
 import "../style.css";
 
 class ListMoviesComponent extends Component {
@@ -107,9 +106,12 @@ class ListMoviesComponent extends Component {
 
         return (
             <div>
-                <div className="row">
-                    <button style={{ float: "left", width: "15%" }} className="btn btn-success" onClick={this.addMovieClicked}>Add Movie</button>
-                    <input style={{ float: "right", width: "85%" }} type="text" className="input" onChange={this.handleChange} placeholder="Search..." />
+
+                <div class="wrap">
+                    <div class="search">
+                        <button style={{ float: "left", width: "15%" }} className="btn add-button" onClick={this.addMovieClicked}>Add Movie</button>
+                        <input type="text" class="searchTerm" placeholder="What are you looking for?" onChange={this.handleChange} />
+                    </div>
                 </div>
                 <div style={{ float: "left", width: "50%" }} className="container">
                     {this.state.message && <div class="alert alert-success">{this.state.message}</div>}
@@ -121,7 +123,6 @@ class ListMoviesComponent extends Component {
                                     <th>Title</th>
                                     <th>Director</th>
                                     <th>Year</th>
-                                    <th>Description</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -133,7 +134,6 @@ class ListMoviesComponent extends Component {
                                                 <td>{movie.movieTitle}</td>
                                                 <td>{movie.director}</td>
                                                 <td>{movie.year}</td>
-                                                <td>{movie.description}</td>
                                             </tr>
                                     )
                                 }
@@ -146,43 +146,11 @@ class ListMoviesComponent extends Component {
                     this.state.selectedId !== 0 ?
 
                         <div style={{ float: "right", width: "50%" }} className="container">
-                            <Formik
-                                initialValues={{ selectedId, selectedTitle, selectedDirector, selectedYear, selectedDesc }}
-                                onSubmit={this.onSubmit}
-                                validateOnChange={false}
-                                validateOnBlur={false}
-                                validate={this.validate}
-                                enableReinitialize={true}
-                            >
-                                {
-                                    (props) => (
-                                        <Form>
-                                            <fieldset className="form-group">
-                                                <label>Id</label>
-                                                <Field className="form-control" type="text" name="selectedId" disabled />
-                                            </fieldset>
-                                            <fieldset className="form-group">
-                                                <label>Movie Title</label>
-                                                <Field className="form-control" type="text" name="selectedTitle" disabled />
-                                            </fieldset>
-                                            <fieldset className="form-group">
-                                                <label>Director</label>
-                                                <Field className="form-control" type="text" name="selectedDirector" disabled />
-                                            </fieldset>
-                                            <fieldset className="form-group">
-                                                <label>Year</label>
-                                                <Field className="form-control" type="text" name="selectedYear" disabled />
-                                            </fieldset>
-                                            <fieldset className="form-group">
-                                                <label>Description</label>
-                                                <Field className="form-control" type="text" name="selectedDesc" disabled />
-                                            </fieldset>
-                                            <button className="btn btn-success" onClick={() => this.updateMovieClicked(selectedId)}>Update</button>
-                                            <button className="btn btn-warning" onClick={() => this.deleteMovieClicked(selectedId)}>Delete</button>
-                                        </Form>
-                                    )
-                                }
-                            </Formik>
+                            <h1>{this.state.selectedTitle}</h1>
+                            <h5>Directed by: {this.state.selectedDirector}</h5>
+                            <p>{this.state.selectedDesc}</p>
+                            <button className="btn add-button" onClick={() => this.updateMovieClicked(selectedId)}>Update</button>
+                            <button className="btn add-button" onClick={() => this.deleteMovieClicked(selectedId)}>Delete</button>
                         </div>
                         :
                         <div style={{ float: "right", width: "50%" }} className="container">
