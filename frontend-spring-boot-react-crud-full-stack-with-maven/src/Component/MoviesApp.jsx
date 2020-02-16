@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import {
     BrowserRouter as Router,
     Switch,
-    Route  } from "react-router-dom";
+    Route
+} from "react-router-dom";
 import ListMoviesComponent from './ListMoviesComponent';
 import MovieComponent from './MovieComponent';
 
@@ -11,7 +12,6 @@ class MoviesApp extends Component {
         return (
             <Router>
                 <>
-                    <h1>Movies Application</h1>
                     <Switch>
                         <Route path="/" exact component={ListMoviesComponent} />
                         <Route path="/movies" exact component={ListMoviesComponent} />

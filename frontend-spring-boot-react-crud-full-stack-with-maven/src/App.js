@@ -1,7 +1,7 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
-import MoviesApp from './component/MoviesApp';
+import MoviesApp from './Component/MoviesApp';
 
 function App() {
   return (
