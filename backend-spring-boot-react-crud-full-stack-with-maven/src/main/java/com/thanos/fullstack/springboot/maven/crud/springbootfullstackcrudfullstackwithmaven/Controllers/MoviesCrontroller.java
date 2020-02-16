@@ -34,7 +34,7 @@ public class MoviesCrontroller {
                 if(movie.getMovieTitle().equals("") || movie.getMovieTitle() == null || movie.getYear() == null || movie.getDirector().equals("") || movie.getDirector() == null){
                         return ResponseEntity.badRequest().build();
                 }
-                
+
                 Movie movieUpdated = moviesService.save(movie);
                 return new ResponseEntity<Movie>(movieUpdated, HttpStatus.OK);
         }
